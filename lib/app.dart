@@ -14,21 +14,42 @@ class App extends StatelessWidget {
 
       // Initializing responsive_framework here.
       builder: (context, child) {
-        return ResponsiveWrapper.builder(
-          BouncingScrollWrapper.builder(context, child!),
-          minWidth: 300,
-          debugLog: true,
-          defaultScale: true,
+        return ResponsiveBreakpoints.builder(
+          child: child!,
           breakpoints: [
-            const ResponsiveBreakpoint.autoScaleDown(450, name: MOBILE),
-            const ResponsiveBreakpoint.autoScale(800, name: TABLET),
-            const ResponsiveBreakpoint.resize(1200, name: DESKTOP),
+            const Breakpoint(
+              start: 0,
+              end: 450,
+              name: MOBILE,
+            ),
+            const Breakpoint(
+              start: 451,
+              end: 800,
+              name: TABLET,
+            ),
+            const Breakpoint(
+              start: 801,
+              end: 1920,
+              name: DESKTOP,
+            ),
           ],
-          background: Container(color: primaryColor),
+          debugLog: true,
+
+          // BouncingScrollWrapper.builder(context, child!),
+          // minWidth: 300,
+          // debugLog: true,
+          // defaultScale: true,
+          // breakpoints: [
+          //   const ResponsiveBreakpoint.autoScaleDown(450, name: MOBILE),
+          //   const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+          //   const ResponsiveBreakpoint.resize(1200, name: DESKTOP),
+          // ],
+          // background: Container(color: primaryColor),
         );
       },
       home: const LandingScreen(),
       theme: ThemeData(
+        useMaterial3: true,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         fontFamily: 'Ubuntu',
       ),

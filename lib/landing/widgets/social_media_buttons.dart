@@ -1,16 +1,19 @@
 import 'package:app/utilities/app_constants.dart';
 import 'package:app/landing/widgets/social_media_button.dart';
-import 'package:app/utilities/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class SocialMediaButtons extends StatelessWidget {
   const SocialMediaButtons({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final alignment = context.isDesktop ? WrapAlignment.start : WrapAlignment.center;
-    final wrapAlignment = context.isMobile ? Alignment.center : null;
+    final handleCondition = ResponsiveBreakpoints.of(context);
+
+    final alignment =
+        handleCondition.isDesktop ? WrapAlignment.start : WrapAlignment.center;
+    final wrapAlignment = handleCondition.isMobile ? Alignment.center : null;
 
     return Container(
       alignment: wrapAlignment,

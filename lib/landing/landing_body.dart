@@ -1,11 +1,11 @@
 import 'package:app/landing/landing_screen.dart';
 import 'package:app/landing/widgets/delayed_widget.dart';
-import 'package:app/utilities/extensions.dart';
 import 'package:app/utilities/showcase_app_model.dart';
 import 'package:flutter/material.dart';
 import 'package:app/utilities/app_constants.dart';
 import 'package:app/landing/landing_footer.dart';
 import 'package:app/landing/widgets/showcase_app_item.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class LandingBody extends StatelessWidget {
   const LandingBody({
@@ -14,6 +14,7 @@ class LandingBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final handleCondition = ResponsiveBreakpoints.of(context);
     return Container(
       // Keeps UI clean and centered when screen size is bigger than 1200.0
       constraints: const BoxConstraints(maxWidth: 1200.0),
@@ -81,13 +82,15 @@ class LandingBody extends StatelessWidget {
                   children: apps.map((e) {
                     final availableWidth = constraints.maxWidth;
 
-                    final rowItemCount = context.isDesktop
+                    final rowItemCount = handleCondition.isDesktop
                         ? 4
-                        : context.isTablet
+                        : handleCondition.isTablet
                             ? 3
                             : 1;
 
-                    final itemWidth = (availableWidth - ((rowItemCount - 1) * 16.0)) / rowItemCount;
+                    final itemWidth =
+                        (availableWidth - ((rowItemCount - 1) * 16.0)) /
+                            rowItemCount;
 
                     return SizedBox(
                       width: itemWidth,

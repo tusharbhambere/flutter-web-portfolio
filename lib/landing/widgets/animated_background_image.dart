@@ -1,5 +1,5 @@
-import 'package:app/utilities/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_breakpoints.dart';
 
 class AnimatedBackgroundImage extends StatefulWidget {
   final ScrollController scrollController;
@@ -7,7 +7,8 @@ class AnimatedBackgroundImage extends StatefulWidget {
   const AnimatedBackgroundImage(this.scrollController, {super.key});
 
   @override
-  State<AnimatedBackgroundImage> createState() => _AnimatedBackgroundImageState();
+  State<AnimatedBackgroundImage> createState() =>
+      _AnimatedBackgroundImageState();
 }
 
 class _AnimatedBackgroundImageState extends State<AnimatedBackgroundImage> {
@@ -32,7 +33,9 @@ class _AnimatedBackgroundImageState extends State<AnimatedBackgroundImage> {
 
   @override
   Widget build(BuildContext context) {
-    final height = context.isMobile ? 440.0 : 540.0;
+    final handleCondition = ResponsiveBreakpoints.of(context);
+
+    final height = handleCondition.isMobile ? 440.0 : 540.0;
     return SizedBox(
       height: height,
       width: double.maxFinite,
